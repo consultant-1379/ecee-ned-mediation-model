@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- *******************************************************************************
+* COPYRIGHT Ericsson 2021. All rights reserved. *
+* No part of this document may be reproduced in any form without the
+* written permission of the copyright owner.The contents of this document
+* are subject to revision without notice due to continued progress in
+* methodology, design and manufacturing. Ericsson shall have no liability
+* for any error or damage of any kind resulting from the use of this document.
+*
+*******************************************************************************
+-->
+<flow:FlowDefinition oss_common:lifeCycle="CURRENT" oss_common:name="CreateEceeConnectivityInformationFlow" oss_common:ns="NED" oss_common:version="1.0.0" synchronicity="SYNCHRONOUS" xmlns:flow="urn:com:ericsson:schema:xml:oss:fbp_flow" xmlns:oss_common="urn:com:ericsson:schema:xml:oss:oss_common" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <oss_common:modelCreationInfo author="xlakmop" creationDate="2nd Jul 2021">
+    <oss_common:designedModel componentId="ned-mediation-models" />
+  </oss_common:modelCreationInfo>
+  <oss_common:desc>This flow is triggered when the CreateEceeConnectivityInformationFlow MO is created.</oss_common:desc>
+  <flow:input name="NED/CreateEceeConnectivityInformationFlow/1.0.0" />
+  <flow:step name="CreateCIAssociationHandler">
+    <flow:handlerTypeRef uri="model://NED/CreateCIAssociationHandler/1.0.0" />
+  </flow:step>
+  <flow:step name="CreateVMSupervisionFunctionHandler">
+    <flow:handlerTypeRef uri="model://NED/CreateVMSupervisionFunctionHandler/1.0.0" />
+  </flow:step>
+  <flow:path transaction="REQUIRED">
+    <flow:from uri="direct:NED/CreateEceeConnectivityInformationFlow/1.0.0" />
+    <flow:to uri="CreateCIAssociationHandler" />
+    <flow:to uri="CreateVMSupervisionFunctionHandler" />
+  </flow:path>
+</flow:FlowDefinition>
